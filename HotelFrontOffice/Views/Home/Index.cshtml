@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Page d'Accueil - Hôtel";
+    var firstName = User.Identity.IsAuthenticated ? User.Identity.Name : "Invité"; // Ou récupérez le prénom du client selon votre modèle
+}
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+    <div class="header-container">
+<h1>Bienvenue @firstName </h1>
+        <nav>
+            <ul>
+                <li><a href="/Home/Contact" class="btn-primary">Contactez-nous</a></li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><a href="/Client/Profile" class="btn-primary">Mon compte</a></li>
+                    <li><a href="/Client/Reservations" class="btn-primary">Mes réservations</a></li>
+                    <li>
+                        <form method="post" action="/Client/Logout" style="margin: 0;">
+                            <button type="submit" class="btn-secondary-logout">Déconnexion</button>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    <li><a href="/Client/Login" class="btn-primary">Se connecter</a></li>
+                    <li><a href="/Client/Register" class="btn-primary">S'inscrire</a></li>
+                }
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <section class="intro">
+        <div class="intro-content">
+            <h2>Découvrez nos chambres disponibles</h2>
+            <p>Choisissez parmi une variété de chambres pour votre séjour parfait.</p>
+            <div class="intro-buttons">
+                <a href="/Home/Reservation" class="btn-primary">Réservez maintenant</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="rooms">
+        <h2>Nos chambres</h2>
+        <div class="room-cards">
+            <!-- Exemple de chambres disponibles -->
+            <div class="room-card">
+                <img src="~/images/chambre1.jpg" alt="Chambre standard">
+                <h3>Chambre Standard</h3>
+                <p>Confort et commodité à petit prix.</p>
+                <a href="/Home/Reservation" class="btn-secondary">Voir les détails</a>
+            </div>
+            <div class="room-card">
+                <img src="~/images/chambre2.jpg" alt="Chambre luxe">
+                <h3>Chambre de Luxe</h3>
+                <p>Offrez-vous une expérience de luxe.</p>
+                <a href="/Home/Reservation" class="btn-secondary">Voir les détails</a>
+            </div>
+            <div class="room-card">
+                <img src="~/images/chambre3.jpg" alt="Suite">
+                <h3>Suite Exécutive</h3>
+                <p>Le confort ultime pour un séjour mémorable.</p>
+                <a href="/Home/Reservation" class="btn-secondary">Voir les détails</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Hôtel. Tous droits réservés.</p>
+    </footer>
+</body>
+
+</html>

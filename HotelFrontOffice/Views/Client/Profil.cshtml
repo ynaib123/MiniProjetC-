@@ -1,0 +1,66 @@
+@model HotelBackend.Models.Client
+
+@{
+    ViewData["Title"] = "Mon Compte";
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Bienvenue, @Model.Prenom</h1>
+            <nav>
+                <ul>
+                    <li><a href="/Home/Contact" class="btn-primary">Contactez-nous</a></li>
+                    <li><a href="/Client/Profile" class="btn-primary">Mon compte</a></li>
+                    <li><a href="/Client/Reservations" class="btn-primary">Mes réservations</a></li>
+                    <li>
+                        <form method="post" action="/Client/Logout" style="margin: 0;">
+                            <button type="submit" class="btn-secondary-logout">Déconnexion</button>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="profile">
+        <div class="form-container">
+            <h2>Mes Informations</h2>
+            <form method="post" action="/Client/UpdateProfile">
+                <div class="form-group">
+                    <label for="Prénom">Prénom</label>
+                    <input type="text" id="Prénom" name="Prénom" value="@Model.Prenom" required />
+                </div>
+                <div class="form-group">
+                    <label for="Nom">Nom</label>
+                    <input type="text" id="Nom" name="Nom" value="@Model.Nom" required />
+                </div>
+                <div class="form-group">
+                    <label for="Email">Email</label>
+                    <input type="email" id="Email" name="Email" value="@Model.Email" required />
+                </div>
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input type="text" id="Password" name="Password" value="@Model.Password" required />
+                </div>
+                <button type="submit" class="btn">Mettre à jour</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Hôtel. Tous droits réservés.</p>
+    </footer>
+</body>
+
+</html>
